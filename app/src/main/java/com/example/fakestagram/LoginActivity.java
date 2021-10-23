@@ -1,6 +1,7 @@
 package com.example.fakestagram;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,8 +28,17 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.i(TAG, "onClick login button");
+                String username = etUsername.getText().toString();
+                String password = etPassword.getText().toString();
+                loginUser(username, password);
 
             }
         });
+    }
+
+    // Navigates to main activity if user had signed in properly.
+    private void loginUser(String username, String password) {
+        Log.i(TAG, "Attempting to login user " + username);
     }
 }
