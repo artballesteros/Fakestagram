@@ -6,4 +6,6 @@
     <string name="description">Description...</string>
     <string name="take_picture">Take Picture</string>
     <string name="submit">Submit</string>
+    <string name="log_out">Log out</string>
+    <string name="sign_up">Sign up</string>
 </resources>
