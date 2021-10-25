@@ -15,7 +15,7 @@ public class ParseApplication extends Application {
         Parse.initialize(new Parse.Configuration.Builder(this)
                 .applicationId("TZoAhieoOZ3a07sg1ddjVicAvwnT9ATwDveNKCZS")
                 .clientKey("yLkESLigeSn2fLjEnvZobPU9dBWMjGJSB9E009Z0")
-                .server("https://shamstigram.b4a.io")
+                .server("https://fakestragram.b4a.io")
                 .build()
         );
     }
