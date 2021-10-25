@@ -10,9 +10,9 @@ public class ParseApplication extends Application {
     public void onCreate() {
         super.onCreate();
         Parse.initialize(new Parse.Configuration.Builder(this)
-                .applicationId("BCrUQVkk80pCdeImSXoKXL5ZCtyyEZwbN7mAb11f")
-                .clientKey("rWFPEbTs7UzkaVsIXnQ4qmmr9oWqwXfiiJehtIZu")
-                .server("https://parseapi.back4app.com")
+                .applicationId("TZoAhieoOZ3a07sg1ddjVicAvwnT9ATwDveNKCZS")
+                .clientKey("yLkESLigeSn2fLjEnvZobPU9dBWMjGJSB9E009Z0")
+                .server("https://shamstigram.b4a.io")
                 .build()
         );
     }
