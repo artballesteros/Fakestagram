@@ -37,6 +37,10 @@ public class RegistrationActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String username = etNewUsername.getText().toString();
                 String password = etNewPassword.getText().toString();
+                if (username.isEmpty() || password.isEmpty()) {
+                    Toast.makeText(RegistrationActivity.this, "Please enter valid credentials", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 registerUser(username, password);
             }
         });
