@@ -30,8 +30,8 @@ public class PostsFragment extends Fragment {
 
     public static final String TAG = "PostsFragment";
     private RecyclerView rvPosts;
-    private PostsAdapter adapter;
-    private List<Post> allPosts;
+    protected PostsAdapter adapter;
+    protected List<Post> allPosts;
 
     public PostsFragment() {
         // Required empty public constructor
@@ -55,8 +55,10 @@ public class PostsFragment extends Fragment {
         queryPost();
     }
 
-    private void queryPost() {
+    protected void queryPost() {
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
+        query.setLimit(20);
+        query.addDescendingOrder(Post.KEY_CREATED_AT);
         query.findInBackground(new FindCallback<Post>() {
             @Override
             public void done(List<Post> posts, ParseException e) {

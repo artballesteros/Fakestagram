@@ -26,7 +26,9 @@ import android.widget.Toast;
 
 import com.example.fakestagram.fragments.ComposeFragment;
 import com.example.fakestagram.fragments.PostsFragment;
+import com.example.fakestagram.fragments.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
@@ -42,17 +44,16 @@ public class MainActivity extends AppCompatActivity {
     //public static final String TAG = "MainActivity";
     final FragmentManager fragmentManager = getSupportFragmentManager();
     private BottomNavigationView bottomNavigationView;
-    private Button btnLogOut;
+    private FloatingActionButton btnLogOut;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //btnLogOut = findViewById(R.id.btnLogOut);
+        btnLogOut = findViewById(R.id.fabLogOut);
         bottomNavigationView = findViewById(R.id.bottomNavigation);
 
-        /*
         btnLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -62,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
-         */
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @SuppressLint("NonConstantResourceId")
@@ -77,7 +77,8 @@ public class MainActivity extends AppCompatActivity {
                         fragment = new ComposeFragment();
                         break;
                     case R.id.action_profile:
-                        fragment = new ComposeFragment();
+                        fragment = new ProfileFragment();
+                        break;
                     default:
                         fragment = new ComposeFragment();
                         break;

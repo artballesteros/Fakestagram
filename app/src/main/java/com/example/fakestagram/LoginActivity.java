@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
+import com.parse.SignUpCallback;
 
 @SuppressWarnings("FieldCanBeLocal")
 public class LoginActivity extends AppCompatActivity {
@@ -45,20 +46,49 @@ public class LoginActivity extends AppCompatActivity {
                 Log.i(TAG, "onClick login button");
                 String username = etUsername.getText().toString();
                 String password = etPassword.getText().toString();
+                if (username.isEmpty() || password.isEmpty()) {
+                    Toast.makeText(LoginActivity.this, "Please enter valid credentials", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 loginUser(username, password);
             }
         });
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String username = etUsername.getText().toString();
+                    String password = etUsername.getText().toString();
+                    if (username.isEmpty() || password.isEmpty()) {
+                        Toast.makeText(LoginActivity.this, "Please enter valid credentials", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    registerUser(username, password);
+                }
+        });
+    }
+
+    // Navigates to main activity if user had registers properly.
+    private void registerUser(String username, String password) {
+        ParseUser user = new ParseUser();
+        user.setUsername(username);
+        user.setPassword(password);
+        user.signUpInBackground(new SignUpCallback() {
             @Override
-            public void onClick(View view) {
-                goRegistrationActivity();
+            public void done(ParseException e) {
+                if (e != null) {
+                    Toast.makeText(LoginActivity.this, "Failed to Register your credentials", Toast.LENGTH_SHORT).show();
+                    Log.e(TAG, "Issue with signing up", e);
+                    return;
+                }
+                Toast.makeText(LoginActivity.this, "Welcome!", Toast.LENGTH_SHORT).show();
+                goMainActivity();
             }
         });
     }
 
     // Navigates to main activity if user had signed in properly.
-    private void loginUser(String username, String password) {
+    private void loginUser (String username, String password){
         Log.i(TAG, "Attempting to login user " + username);
         ParseUser.logInInBackground(username, password, new LogInCallback() {
             @Override
@@ -68,20 +98,14 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, "Issue with login!", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                goMainActivity();
                 Toast.makeText(LoginActivity.this, "Success!", Toast.LENGTH_SHORT).show();
+                goMainActivity();
             }
         });
     }
 
-    private void goMainActivity() {
+    private void goMainActivity () {
         Intent i = new Intent(this, MainActivity.class);
-        startActivity(i);
-        finish();
-    }
-
-    private void goRegistrationActivity() {
-        Intent i = new Intent(this, RegistrationActivity.class);
         startActivity(i);
         finish();
     }

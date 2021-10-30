@@ -24,6 +24,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.fakestagram.LoginActivity;
 import com.example.fakestagram.MainActivity;
 import com.example.fakestagram.Post;
 import com.example.fakestagram.R;
@@ -48,6 +49,7 @@ public class ComposeFragment extends Fragment {
     private Button btnCaptureImage;
     private ImageView ivPostImage;
     private Button btnSubmit;
+    private Button btnLogOut;
     private File photoFile;
     public String photoFileName = "photo.jpg";
 
@@ -73,7 +75,6 @@ public class ComposeFragment extends Fragment {
         btnCaptureImage = view.findViewById(R.id.btnCaptureImage);
         ivPostImage = view.findViewById(R.id.ivPostImage);
         btnSubmit = view.findViewById(R.id.btnSubmit);
-
 
         btnCaptureImage.setOnClickListener(new View.OnClickListener() {
             @Override
