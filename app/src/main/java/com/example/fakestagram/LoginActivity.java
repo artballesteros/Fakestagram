@@ -54,6 +54,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        /*
         btnSignUp.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -66,8 +67,10 @@ public class LoginActivity extends AppCompatActivity {
                     registerUser(username, password);
                 }
         });
+         */
     }
 
+    /*
     // Navigates to main activity if user had registers properly.
     private void registerUser(String username, String password) {
         ParseUser user = new ParseUser();
@@ -86,6 +89,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+     */
 
     // Navigates to main activity if user had signed in properly.
     private void loginUser (String username, String password){

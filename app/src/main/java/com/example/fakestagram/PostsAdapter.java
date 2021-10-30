@@ -1,6 +1,7 @@
 package com.example.fakestagram;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +12,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.tabs.TabLayout;
+import com.parse.ParseException;
 import com.parse.ParseFile;
+import com.parse.ParseUser;
 
 import java.util.List;
 
@@ -46,6 +50,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
+        private static final String TAG = "PostsAdapter.ViewHolder";
         private TextView tvUsername;
         private ImageView ivImage;
         private TextView tvDescription;
@@ -59,7 +64,12 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
 
         public void bind(Post post) {
             tvDescription.setText(post.getDescription());
-            tvUsername.setText(post.getUser().getUsername());
+            ParseUser poster = post.getUser();
+            try {
+                tvUsername.setText(poster.fetchIfNeeded().getUsername());
+            } catch (ParseException e) {
+                Log.e(TAG, "Could not retrieve Username", e);
+            }
             ParseFile image = post.getImage();
             if (image != null) {
                 Glide.with(context).load(post.getImage().getUrl()).into(ivImage);

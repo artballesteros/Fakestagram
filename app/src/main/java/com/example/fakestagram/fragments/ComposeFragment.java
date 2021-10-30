@@ -49,7 +49,6 @@ public class ComposeFragment extends Fragment {
     private Button btnCaptureImage;
     private ImageView ivPostImage;
     private Button btnSubmit;
-    private Button btnLogOut;
     private File photoFile;
     public String photoFileName = "photo.jpg";
 
